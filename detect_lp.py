@@ -21,9 +21,7 @@ kernel = np.ones((3,3), np.uint8)
 dilated_image = cv2.dilate(canny_image,kernel,iterations=1)
 cv2.imshow('dilated image', dilated_image)
 
-cv2.imshow('thresh_image', thresh_image)
-
-cnts = cv2.findContours(thresh_image.copy(), cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+cnts = cv2.findContours(dilated_image.copy(), cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
 cnts = imutils.grab_contours(cnts)
 cnts = sorted(cnts, key=cv2.contourArea, reverse=True)[:10]
 screenCnt = None
